@@ -1,0 +1,130 @@
+<!-- ─────────────────────────────────────────────────────────────
+  The frontend for our weather app.
+───────────────────────────────────────────────────────────────── -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WECS Weather App</title>
+
+  <!-- Google Font — clean and modern, one import, no install -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Page wrapper ──────────────────────────────────────── -->
+  <div class="app-container">
+
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="app-header">
+      <h1 class="app-title">🌤 Weather App</h1>
+      <p class="app-subtitle">Built at WECS Workshop · Powered by OpenWeatherMap</p>
+    </header>
+
+    <!-- ── Search bar ──────────────────────────────────────── -->
+    <section class="search-section">
+      <div class="search-bar">
+        <input
+          type="text"
+          id="city-input"
+          class="search-input"
+          placeholder="Enter a city name... e.g. Victoria"
+          autocomplete="off"
+          aria-label="City name"
+        />
+        <button id="search-btn" class="search-btn" aria-label="Search">
+          Search
+        </button>
+      </div>
+
+      <!-- Error message — hidden by default, shown on bad input -->
+      <p id="error-msg" class="error-msg hidden" role="alert"></p>
+    </section>
+
+    <!-- ── Loading spinner — shown while API calls are in flight -->
+    <div id="loading" class="loading hidden" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Fetching weather data…</p>
+    </div>
+
+    <!-- ── Results — hidden until a successful search ──────── -->
+    <main id="results" class="results hidden">
+
+      <!-- Current weather card -->
+      <div class="card current-weather">
+
+        <div class="current-top">
+          <div class="current-location">
+            <h2 id="city-name" class="city-name"></h2>
+            <p id="city-country" class="city-country"></p>
+          </div>
+          <img id="weather-icon" class="weather-icon" src="" alt="Weather icon" />
+        </div>
+
+        <div class="current-main">
+          <span id="current-temp" class="current-temp"></span>
+          <span id="current-desc" class="current-desc"></span>
+        </div>
+
+        <!-- Detail pills — feels like, humidity, wind, visibility -->
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Feels like</span>
+            <span id="feels-like" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Humidity</span>
+            <span id="humidity" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Wind</span>
+            <span id="wind" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Visibility</span>
+            <span id="visibility" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Sunrise</span>
+            <span id="sunrise" class="detail-value"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Sunset</span>
+            <span id="sunset" class="detail-value"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Air quality badge -->
+      <div class="card aqi-card">
+        <h3 class="card-title">Air Quality</h3>
+        <div class="aqi-display">
+          <span id="aqi-label" class="aqi-label"></span>
+          <span id="aqi-advice" class="aqi-advice"></span>
+        </div>
+      </div>
+
+      <!-- 5-day forecast strip -->
+      <div class="card forecast-card">
+        <h3 class="card-title">5-Day Forecast</h3>
+        <!-- Forecast days are injected here by app.js -->
+        <div id="forecast-strip" class="forecast-strip"></div>
+      </div>
+
+    </main>
+
+    <!-- ── Footer ───────────────────────────────────────────── -->
+    <footer class="app-footer">
+      <p>Made by Flavio Fino · <a href="https://github.com" target="_blank" rel="noopener">View on GitHub</a></p>
+    </footer>
+
+  </div>
+
+  <!-- app.js loaded at the bottom so the DOM is ready when it runs -->
+  <script src="app.js"></script>
+</body>
+</html>
